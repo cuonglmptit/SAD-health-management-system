@@ -1,0 +1,116 @@
+{% extends "main.html" %}
+{% block content %}
+<h1>Chỉnh sửa phòng khám</h1>
+<a href="{% url 'clinic_manage' %}">&lt; Quay lại</a>
+<form action="{% url 'edit_clinic' clinic.id %}" method="POST" class="clinic-form">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="name">Tên:</label>
+        <input id="name" name="name" type="text" class="form-control" value="{{ clinic.name }}" required>
+    </div>
+    <div class="form-group">
+        <label for="location">Vị trí:</label>
+        <input id="location" name="location" type="text" class="form-control" value="{{ clinic.location }}" required>
+    </div>
+    <div class="form-group">
+        <label for="phone_number">Số điện thoại:</label>
+        <input id="phone_number" name="phone_number" type="text" class="form-control" value="{{ clinic.phone_number }}" required>
+    </div>
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input id="email" name="email" type="email" class="form-control" value="{{ clinic.email }}" required>
+    </div>
+    <div class="form-group">
+        <label for="department">Khoa:</label>
+        <select id="department" name="department" class="form-control" required>
+            <option value="Da Khoa" {% if clinic.department == 'Da Khoa' %} selected {% endif %}>Đa Khoa</option>
+            <option value="Noi Khoa" {% if clinic.department == 'Noi Khoa' %} selected {% endif %}>Nội Khoa</option>
+            <option value="Ngoai Khoa" {% if clinic.department == 'Ngoai Khoa' %} selected {% endif %}>Ngoại Khoa</option>
+            <option value="Phu Khoa" {% if clinic.department == 'Phu Khoa' %} selected {% endif %}>Phụ Khoa</option>
+            <option value="Nhi Khoa" {% if clinic.department == 'Nhi Khoa' %} selected {% endif %}>Nhi Khoa</option>
+            <!-- Thêm các khoa khác nếu cần -->
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="clinic_type">Loại phòng khám:</label>
+        <select id="clinic_type" name="clinic_type" class="form-control" required>
+            <option value="Da khoa" {% if clinic.clinic_type == 'Da khoa' %} selected {% endif %}>Đa khoa</option>
+            <option value="Noi khoa" {% if clinic.clinic_type == 'Noi khoa' %} selected {% endif %}>Nội khoa</option>
+            <option value="Ngoai khoa" {% if clinic.clinic_type == 'Ngoai khoa' %} selected {% endif %}>Ngoại khoa</option>
+            <option value="Phu khoa" {% if clinic.clinic_type == 'Phu khoa' %} selected {% endif %}>Phụ khoa</option>
+            <option value="Nhi khoa" {% if clinic.clinic_type == 'Nhi khoa' %} selected {% endif %}>Nhi khoa</option>
+            <option value="Da lieu" {% if clinic.clinic_type == 'Da lieu' %} selected {% endif %}>Da liễu</option>
+            <option value="ENT" {% if clinic.clinic_type == 'ENT' %} selected {% endif %}>Tai Mũi Họng</option>
+            <option value="Mat" {% if clinic.clinic_type == 'Mat' %} selected {% endif %}>Mắt</option>
+            <option value="Emergency" {% if clinic.clinic_type == 'Emergency' %} selected {% endif %}>Cấp cứu</option>
+            <option value="Xet nghiem" {% if clinic.clinic_type == 'Xet nghiem' %} selected {% endif %}>Xét nghiệm</option>
+            <option value="Nha khoa" {% if clinic.clinic_type == 'Nha khoa' %} selected {% endif %}>Nha khoa</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="status">Status:</label>
+        <select id="status" name="status" class="form-control" required>
+            <option value="Available" {% if clinic.status == 'Available' %} selected {% endif %}>Available</option>
+            <option value="Not Available" {% if clinic.status == 'Not Available' %} selected {% endif %}>Not Available</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Xác nhận</button>
+</form>
+<style>
+    /* Style for the form container */
+    form {
+        width: 50%;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+    /* Style for the select boxes */
+    select.form-control {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    /* Style for the form labels */
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    /* Style for the input fields */
+    input[type="text"],
+    input[type="email"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    /* Style for the submit button */
+    button[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    /* Clearfix to prevent collapsing margins */
+    .clearfix::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+</style>
+{% endblock content %}

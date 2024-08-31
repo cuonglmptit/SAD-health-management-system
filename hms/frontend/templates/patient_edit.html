@@ -1,0 +1,81 @@
+{% extends "main.html" %}
+{% block content %}
+<h1>Edit Patient</h1>
+<a href="{% url 'get_patient_manage' %}">&lt; Back</a>
+<form action="{% url 'edit_patient' patient.id %}" method="POST" class="patient-form">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="first_name">First name:</label>
+        <input id="first_name" name="first_name" type="text" class="form-control" value="{{ patient.first_name }}" required>
+    </div>
+    <div class="form-group">
+        <label for="last_name">Last name:</label>
+        <input id="last_name" name="last_name" type="text" class="form-control" value="{{ patient.last_name }}" required>
+    </div>
+    <div class="form-group">
+        <label for="date_of_birth">Date of birth:</label>
+        <input id="date_of_birth" name="date_of_birth" type="date" class="form-control" value="{{ patient.date_of_birth }}" required>
+    </div>
+    <div class="form-group">
+        <label for="address">Address:</label>
+        <input id="address" name="address" type="text" class="form-control" value="{{ patient.address }}" required>
+    </div>
+    <div class="form-group">
+        <label for="phone_number">Phone number:</label>
+        <input id="phone_number" name="phone_number" type="text" class="form-control" value="{{ patient.phone_number }}" required>
+    </div>
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input id="email" name="email" type="email" class="form-control" value="{{ patient.email }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<style>
+    /* Style for the form container */
+    form {
+        width: 50%;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+    /* Style for the form labels */
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    /* Style for the input fields */
+    input[type="text"],
+    input[type="email"],
+    input[type="date"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    /* Style for the submit button */
+    button[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    /* Clearfix to prevent collapsing margins */
+    .clearfix::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+</style>
+{% endblock content %}

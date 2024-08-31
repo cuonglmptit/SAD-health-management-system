@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Thư viện jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Thư viện Select2 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#searchInput').on('keyup', function () {
+                var value = $(this).val().toLowerCase();
+                $('table tbody tr').filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            // Áp dụng Select2 cho tất cả các select box
+            $('select').select2();
+        });
+    </script>
+    
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management System</title>
+    <link rel="stylesheet" href="{% static 'styles.css'%}">
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul class="nav-list">
+                <li><a href="{% url 'get_home'%}">Home</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="main-container">
+        <aside>
+            <ul class="management-list">
+                <li><a href="{% url 'get_patient_manage'%}">Quản lý bệnh nhân</a></li>
+                <li><a href="{% url 'appointment_list'%}">Quản lý lịch hẹn</a></li>
+                <li><a href="{% url 'get_employee_manage'%}">Quản lý Nhân Viên và Bác Sĩ</a></li>
+                <li><a href="{% url 'clinic_manage'%}">Quản lý phòng khám</a></li>
+                <li><a href="{% url 'medical_record_list'%}">Quản lý bệnh án</a></li>
+            </ul>
+        </aside>
+        <main>
+            {% block content %}
+            <h1>Hospital Management System</h1>
+            <p>Welcome to the Hospital Management System. Please select an option from the sidebar.</p>
+            {% endblock content%}
+        </main>
+    </div>
+</body>
+
+</html>
